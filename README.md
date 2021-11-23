@@ -6,23 +6,23 @@ This package generates a basic Turing Pattern model using the Schnakenberg Syste
 
 We consider a trimolecular reaction that may display limit cycle behaviour:
 
-_2X + Y ⇌ 3X_  
-_X ⇌ A_  
-_B → Y_  
+_2A + B ⇌ 3A_  
+_A ⇌ M_  
+_N → B_  
 
-A and B are in sufficient excess that their concentration is effectively constant. We may consider these reactions to be equivalent to standard formation and decay reactions: 
+M and N are in sufficient excess that their concentration is effectively constant. We may consider these reactions to be equivalent to standard formation and decay reactions: 
 
 _∅ → A, A → ∅, ∅ → B_
 
 This can be represented by the non-dimensional system of ODEs:
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{dx}{dt} = x(t)^{2}y(t) - x(t) - b">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{da}{dt} = a(t)^{2}b(t) - a(t) - n">
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{dy}{dt} = - x(t)^{2}y(t) - a">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{db}{dt} = - a(t)^{2}b(t) - m">
 
-where _a_ and _b_ are both negative.
+where _m_ and _n_ are both negative.
 
-This autocatalytic system is similar to a _'[Brusselator](https://en.wikipedia.org/wiki/Brusselator)'_, in which _Y_ is instead formed from _X_ (at some rate _cX_ ).
+This autocatalytic system is similar to a _'[Brusselator](https://en.wikipedia.org/wiki/Brusselator)'_, in which _B_ is instead formed from _A_ (at some rate _kA_ ).
 
 ## References
 
