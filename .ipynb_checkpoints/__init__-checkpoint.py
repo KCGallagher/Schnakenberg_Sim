@@ -1,1 +1,0 @@
-from ode_simulator import solve_schnakenberg
