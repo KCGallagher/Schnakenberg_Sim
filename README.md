@@ -6,9 +6,9 @@ This package generates a basic Turing Pattern model using the Schnakenberg Syste
 
 We consider a trimolecular system that may display limit cycle behaviour:
 
-_2X + Y ⇌ 3X_
-_X ⇌ A_
-_B → Y_
+_2X + Y ⇌ 3X_  
+_X ⇌ A_  
+_B → Y_  
 
 A and B are in sufficient excess that their concentration is effectively constant. We may consider these reactions to be equivalent to standard formation and decay reactions: 
 
