@@ -12,7 +12,7 @@ _B → Y_
 
 A and B are in sufficient excess that their concentration is effectively constant. We may consider these reactions to be equivalent to standard formation and decay reactions: 
 
-_∅ → A, A  →∅ ,∅ → B_
+_∅ → A, A → ∅, ∅ → B_
 
 This can be represented by the non-dimensional system of ODEs:
 
