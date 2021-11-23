@@ -1,8 +1,6 @@
 """ Solves time dependant ODE model without spatial variation
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 
@@ -40,23 +38,4 @@ def solve_schnakenberg(t_max, t_min = 0, y_init = [0,0], rates = [0,0], t_eval =
                          dense_output=True)
     return solution.t, solution.y
 
-if __name__ == '__main__':
-    N_STEPS = int(1e3)
-    STEP_SIZE = 0.005
-    INITIAL_COND = [0,1]  # Starting value of [A, B]
-    A_PROD, B_PROD = 1, 1  # Initial production rates
 
-    t_steps = np.linspace(0, N_STEPS * STEP_SIZE, N_STEPS)
-
-    t_values, state_values = solve_schnakenberg(t_max  = N_STEPS * STEP_SIZE,
-                                                y_init = INITIAL_COND,
-                                                rates = [A_PROD, B_PROD],
-                                                t_eval = t_steps)
-
-    plt.plot(t_values, state_values[0], label = 'A')
-    plt.plot(t_values, state_values[1], label = 'B')
-    plt.xlabel('Time (arbitrary units)')
-    plt.ylabel('Concentration (arbitrary units)')
-    plt.title('Schnakenberg System - Time Evolution')
-    plt.legend()
-    plt.show()
