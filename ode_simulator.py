@@ -11,6 +11,7 @@ INITIAL_COND = [0,1]  # Starting value of [A, B]
 A_PROD, B_PROD = 1, 1  # Initial production rates
 
 
+
 t_steps = np.linspace(0, N_STEPS * STEP_SIZE, N_STEPS)
 
 def ode_schnakenberg(t, y, a_prod, b_prod):
