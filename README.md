@@ -22,7 +22,7 @@ Which occur with respective rates _k1, k2, k3, k4_.
 
 This can be represented by the non-dimensional system of ODEs:
 
-![ODES model](./images/odes.png)
+![ODES model](./Images/ode.png)
 
 
 | Parameter     | Description                                   | Corresponding Stochastic Parameter|
@@ -41,8 +41,8 @@ This autocatalytic system is similar to a _'[Brusselator](https://en.wikipedia.o
 In order to see any patterning, a spatial component must be taken into account. Turing patterns are driven by an instability causing diffusion mechanism, which needs to be incorporated into the model.
 
 The ODE system therefore becomes the PDE system:
-<img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{a}}{\partial{t}} = \mu \+ \kappa a(t)^{2}b(t) - \alpha a(t) \+ D_1 \nabla^2 a">
-<img src="https://render.githubusercontent.com/render/math?math=\frac{\partial{b}}{\partial{t}} = \beta - \kappa a(t)^{2}b(t) + D_2 \nabla^2 b">
+
+![PES model](./Images/pde.png)
 
 Diffusive terms can be added into the stochastic model by partitioning the domain into boxes of side length _h_. In this model we consider a pseudo-2D domain so arrange our boxes on a 2D rectangular lattice, and index these boxes by _i,j_. Diffusion events are modelled as "reactions" between adjoining boxes:
 
