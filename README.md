@@ -22,7 +22,7 @@ Which occur with respective rates _k1, k2, k3, k4_.
 
 This can be represented by the non-dimensional system of ODEs:
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{da}{dt} = \mu + \kappa a(t)^{2}b(t) - \alpha a(t)">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{da}{dt} = \mu \+ \kappa a(t)^{2}b(t) - \alpha a(t)">
 <img src="https://render.githubusercontent.com/render/math?math=\frac{db}{dt} = \beta - \kappa a(t)^{2}b(t) ">
 
 
