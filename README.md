@@ -1,5 +1,9 @@
 # Schnakenberg_Sim
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![BCH compliance](https://bettercodehub.com/edge/badge/KCGallagher/Schnakenberg_Sim?branch=master)](https://bettercodehub.com/)
+
+
 This package generates a basic Turing Pattern model using the Schnakenberg System [[1](#references)], as part of a group project for the SABS DTC Mathematical Biology Course.
 
 ## Schnakenberg System
