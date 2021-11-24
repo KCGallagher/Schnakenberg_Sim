@@ -46,7 +46,7 @@ The ODE system therefore becomes the PDE system:
 
 Diffusive terms can be added into the stochastic model by partitioning the domain into boxes of side length _h_. In this model we consider a pseudo-2D domain so arrange our boxes on a 2D rectangular lattice, and index these boxes by _i,j_. Diffusion events are modelled as "reactions" between adjoining boxes:
 
-<img src="https://render.githubusercontent.com/render/math?math=A_{(i,j)} \quod \xrightarrow{d} \quod A_{(i \pm 1,j\pm 1)} , \quad d := D/h^2">
+<img src="https://render.githubusercontent.com/render/math?math=A_{(i,j)} \quad \xrightarrow{d} \quad A_{(i \pm 1,j\pm 1)} , \quad d := D/h^2">
 
 
 
