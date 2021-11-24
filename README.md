@@ -28,6 +28,14 @@ where _m_ and _n_ are both negative.
 
 This autocatalytic system is similar to a _'[Brusselator](https://en.wikipedia.org/wiki/Brusselator)'_, in which _B_ is instead formed from _A_ (at some rate _kA_ ).
 
+## Code Structure
+
+Running files have _'main'_ in the file name (such as `ode_main.py`), and can be used to run simulations of the system, based on functions defined in the other files. The functionality of each of these files is as follows:
+
+* `ode_main.py` - Solve time-dependant ODE model with no spatial dependance
+
+Further scripts are provided as Jupyter Notebooks (`.ipynb`) in the `Examples/` directory, and used to generate all figures in the `Images/` directory.
+
 ## References
 
 [1] Schnakenberg, J. (1979). Simple chemical reaction systems with limit cycle behaviour. In Journal of Theoretical Biology (Vol. 81, Issue 3, pp. 389–400). Elsevier BV. https://doi.org/10.1016/0022-5193(79)90042-0
