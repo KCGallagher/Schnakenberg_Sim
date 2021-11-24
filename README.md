@@ -16,15 +16,25 @@ _N → B_
 
 M and N are in sufficient excess that their concentration is effectively constant. We may consider these reactions to be equivalent to standard formation and decay reactions: 
 
-_∅ → A, A → ∅, ∅ → B_
+_2A + B → 3A, ∅ → A, A → ∅, ∅ → B_
+
+Which occur with respective rates _k1, k2, k3, k4_.
 
 This can be represented by the non-dimensional system of ODEs:
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{da}{dt} = a(t)^{2}b(t) - a(t) - n">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{da}{dt} = \mu + \kappa a(t)^{2}b(t) - \alpha a(t)">
+<img src="https://render.githubusercontent.com/render/math?math=\frac{db}{dt} = \beta - \kappa a(t)^{2}b(t) ">
 
-<img src="https://render.githubusercontent.com/render/math?math=\frac{db}{dt} = - a(t)^{2}b(t) - m">
 
-where _m_ and _n_ are both negative.
+| Parameter     | Description                                                                             | Unit |
+| ------------- | --------------------------------------------------------------------------------------- | ---- |
+| μ             | Birth rate of A molcules | 1/t  |    
+| β             | Birth rate of B molecules   | 1/t  |
+| κ             | Rate of _2A + B ⇌ 3A_  reaction     | 1/t  |
+| α         | Death rate of A molcules    | 1/t  |
+
+β > 0 controls the rate of tranmission, κ > 0 the rate at which exposed individuals become infectious, and γ > 0 the rate at which individuals recover. The model also requires initial conditions for each compartment: S(0), E(0), I(0), and R(0), which represent the initial number of people in each category.
+
 
 This autocatalytic system is similar to a _'[Brusselator](https://en.wikipedia.org/wiki/Brusselator)'_, in which _B_ is instead formed from _A_ (at some rate _kA_ ).
 
