@@ -11,7 +11,7 @@ alpha = 0.02
 beta = 192000 * h**3
 mu = 64000 * h**3
 kappa = 2.44e-16 * h**-6
-A_0, B_0 = 200.0, 75.0  # Should be defined as floats
+A_0, B_0 = 12800000, 4882812.5 # Should be defined as floats
 
 nx = 100
 dx = 1.1
