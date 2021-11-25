@@ -27,8 +27,8 @@ L = dx * nx
 m = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
 
 time_step = 0.2
-step_num = 100
-plot_num = 50  # Should be less than step num
+step_num = 20
+plot_num = 20  # Should be less than step num
 delete_images = True  # Boolean to delete images after running
 
 v0 = CellVariable(name = "Concentration of A", mesh=m, hasOld=True, value=A_0)
@@ -46,13 +46,14 @@ for step in range(step_num):
     v1.updateOld()
     eqn.solve(dt=time_step)
     if step in plotting_steps:
-        viewer.plot(f"Images/Spatial_ODE/Mesh2D_{step}.png")
+        viewer.plot(f"Images/Spatial_ODE/Mesh2D_{step:04d}.png")
 
 
 fp_in = "Images/Spatial_ODE/Mesh2D_*.png"
 fp_out = "Images/Spatial_ODE/Mesh2D.gif"
 
 img, *imgs = [Image.open(f) for f in sorted(glob.glob(fp_in))]
+print(sorted(glob.glob(fp_in)))
 img.save(fp=fp_out, format='GIF', append_images=imgs,
          save_all=True, duration=200, loop=0)
 
