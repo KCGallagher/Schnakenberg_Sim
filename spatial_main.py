@@ -1,6 +1,7 @@
 """Runs simulation of time and spatially dependant ODE model"""
 
 from fipy import Grid1D, CellVariable, TransientTerm, DiffusionTerm, Viewer
+from gif_creator import create_gif
 
 D_1, D_2 = 1, 0.01
 alpha = 1
@@ -25,4 +26,6 @@ for t in range(10):
     v0.updateOld()
     v1.updateOld()
     eqn.solve(dt=1.e-3)
-    vi.plot(f"Images/Spatial_ODE/coupledimage{t}.png")
+    vi.plot(f"Images/Spatial_ODE/Line1D_{t}.png")
+
+create_gif("Images/Spatial_ODE/Line1D")

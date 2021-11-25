@@ -1,19 +1,16 @@
 """Runs simulation of time and spatially dependant ODE model
 
 Plots one concentration variable at subsequent timepoints and then converts 
-these into a .gif, optionally deleting the image files afterwards"""
+these into a .gif, optionally deleting the image files afterwards
+"""
 
-
-import glob
-import os
 from fipy import Grid2D, CellVariable, TransientTerm, DiffusionTerm, Viewer
-from PIL import Image
-from numpy import delete
+from gif_creator import create_gif
 
 h = 25e-3
 
 D_A, D_B = 1e-5/(2*h**2), 1e-3/(2*h**2)
-alpha = 0.2
+alpha = 0.02
 beta = 192000 * h**3
 mu = 64000 * h**3
 kappa = 2.44e-16 * h**-6
@@ -27,7 +24,7 @@ L = dx * nx
 m = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
 
 time_step = 0.2
-step_num = 20
+step_num = 100
 plot_num = 20  # Should be less than step num
 delete_images = True  # Boolean to delete images after running
 
@@ -39,7 +36,7 @@ eqn0 = TransientTerm(var=v0) == mu - alpha * v0 + kappa * v0**2 * v1 + Diffusion
 eqn1 = TransientTerm(var=v1) == beta - kappa * v0**2 * v1 +  DiffusionTerm(D_B, var=v1)
 eqn = eqn0 & eqn1
 
-viewer = Viewer(vars=plot_var, datamin=0., datamax= A_0)
+viewer = Viewer(vars=plot_var, datamin=0, datamax= A_0)
 plotting_steps  = range(0, step_num, int(step_num/plot_num))
 for step in range(step_num):
     v0.updateOld()
@@ -48,19 +45,5 @@ for step in range(step_num):
     if step in plotting_steps:
         viewer.plot(f"Images/Spatial_ODE/Mesh2D_{step:04d}.png")
 
+create_gif("Images/Spatial_ODE/Mesh2D")
 
-fp_in = "Images/Spatial_ODE/Mesh2D_*.png"
-fp_out = "Images/Spatial_ODE/Mesh2D.gif"
-
-img, *imgs = [Image.open(f) for f in sorted(glob.glob(fp_in))]
-print(sorted(glob.glob(fp_in)))
-img.save(fp=fp_out, format='GIF', append_images=imgs,
-         save_all=True, duration=200, loop=0)
-
-if delete_images:
-    for file in os.listdir('Images/Spatial_ODE/'):
-        if file.endswith('.png'):
-            try:
-                os.remove('Images/Spatial_ODE/' + file) 
-            except FileNotFoundError:
-                print("Can't find file: " + str(file))
