@@ -43,6 +43,10 @@ for step in range(step_num):
     eqn.solve(dt=time_step)
     if step in plotting_steps:
         viewer.plot(f"Images/Spatial_ODE/Mesh2D_{step:04d}.png")
+        for txt in viewer.axes.texts:
+            txt.set_visible(False)
+        viewer.axes.text(0.7*dx*nx, 0.93*dx*nx, f'Time = {step * time_step:.2f} s',
+                bbox={'facecolor': 'white', 'alpha': 0.8, 'pad': 2.5})
 
 create_gif("Images/Spatial_ODE/Mesh2D", delete_images)
 
