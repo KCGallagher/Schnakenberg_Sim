@@ -2,12 +2,12 @@
 
 from fipy import Grid2D, CellVariable, TransientTerm, DiffusionTerm, Viewer
 
-D_1, D_2 = 1, 0.01
-alpha = 1
-beta = 1
+D_A, D_B = 1.6, 160
+alpha = 0.02
+beta = 3
 mu = 1
-kappa = 1
-A_0, B_0 = 1, 1
+kappa = 1e-6
+A_0, B_0 = 200, 75
 
 nx = 20
 ny = nx
@@ -16,29 +16,22 @@ dy = dx
 L = dx * nx
 m = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
 
-v0 = CellVariable(mesh=m, hasOld=True, value=A_0)
-v1 = CellVariable(mesh=m, hasOld=True, value=B_0)
+time_step = 0.002
+step_num = 40
 
-eqn0 = TransientTerm(var=v0) == mu - alpha * v0 + kappa * v0**2 * v1 + DiffusionTerm(D_1, var=v0) 
-eqn1 = TransientTerm(var=v1) == beta - kappa * v0**2 * v1 +  DiffusionTerm(D_2, var=v1)
+v0 = CellVariable(name = "Concentration of A", mesh=m, hasOld=True, value=A_0)
+v1 = CellVariable(name = "Concentration of B", mesh=m, hasOld=True, value=B_0)
+plot_var = v1  # CHANGE THIS TO V0 OR V1 TO DETERMINE WHICH VARIABLE IS PLOTTED
 
+eqn0 = TransientTerm(var=v0) == mu - alpha * v0 + kappa * v0**2 * v1 + DiffusionTerm(D_A, var=v0) 
+eqn1 = TransientTerm(var=v1) == beta - kappa * v0**2 * v1 +  DiffusionTerm(D_B, var=v1)
 eqn = eqn0 & eqn1
 
-# vi = Viewer((v0, v1))
-# from builtins import range
-# for t in range(10):
-#     v0.updateOld()
-#     v1.updateOld()
-#     eqn.solve(dt=1.e-3)
-#     vi.plot(f"Images/Spatial_ODE/coupledimage{t}.png")
 
-#viewer = Viewer(vars=(v0, v1), datamin=0., datamax=1.)
-viewer = Viewer((v0, v1))
-steps = 40
-#help(viewer.plot)
-for step in range(steps):
+viewer = Viewer(vars=plot_var)
+for step in range(step_num):
     v0.updateOld()
     v1.updateOld()
-    eqn.solve(dt=1.e-3)
-    viewer.plot()
+    eqn.solve(dt=time_step)
+    viewer.plot(f"Images/Spatial_ODE/Mesh2D_{step}.png")
 
