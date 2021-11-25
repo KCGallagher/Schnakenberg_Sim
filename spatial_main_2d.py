@@ -17,15 +17,11 @@ kappa = 2.44e-16 * h**-6
 A_0, B_0 = 200.0, 75.0  # Should be defined as floats
 
 nx = 100
-ny = nx
 dx = 1.1
-dy = dx
-L = dx * nx
-m = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
+m = Grid2D(dx=dx, dy=dx, nx=nx, ny=nx)
 
 time_step = 0.2
-step_num = 100
-plot_num = 20  # Should be less than step num
+step_num, plot_num = 100, 20  # Plot num should be less than step num
 delete_images = True  # Boolean to delete images after running
 
 v0 = CellVariable(name = "Concentration of A", mesh=m, hasOld=True, value=A_0)
@@ -37,6 +33,9 @@ eqn1 = TransientTerm(var=v1) == beta - kappa * v0**2 * v1 +  DiffusionTerm(D_B, 
 eqn = eqn0 & eqn1
 
 viewer = Viewer(vars=plot_var) #, datamin=0, datamax= A_0)
+viewer.axes.set_xlabel('x position (mm)')
+viewer.axes.set_ylabel('y position (mm)')
+
 plotting_steps  = range(0, step_num, int(step_num/plot_num))
 for step in range(step_num):
     v0.updateOld()
@@ -45,5 +44,5 @@ for step in range(step_num):
     if step in plotting_steps:
         viewer.plot(f"Images/Spatial_ODE/Mesh2D_{step:04d}.png")
 
-create_gif("Images/Spatial_ODE/Mesh2D")
+create_gif("Images/Spatial_ODE/Mesh2D", delete_images)
 
