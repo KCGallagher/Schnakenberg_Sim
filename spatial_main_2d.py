@@ -7,7 +7,7 @@ these into a .gif, optionally deleting the image files afterwards
 from fipy import Grid2D, CellVariable, TransientTerm, DiffusionTerm, Viewer
 from gif_creator import create_gif
 
-h = 25e-3
+h = 1
 
 D_A, D_B = 1e-5/(2*h**2), 1e-3/(2*h**2)
 alpha = 0.02
@@ -18,7 +18,7 @@ A_0, B_0 = 200.0, 75.0  # Should be defined as floats
 
 nx = 100
 ny = nx
-dx = h
+dx = 1.1
 dy = dx
 L = dx * nx
 m = Grid2D(dx=dx, dy=dy, nx=nx, ny=ny)
@@ -36,7 +36,7 @@ eqn0 = TransientTerm(var=v0) == mu - alpha * v0 + kappa * v0**2 * v1 + Diffusion
 eqn1 = TransientTerm(var=v1) == beta - kappa * v0**2 * v1 +  DiffusionTerm(D_B, var=v1)
 eqn = eqn0 & eqn1
 
-viewer = Viewer(vars=plot_var, datamin=0, datamax= A_0)
+viewer = Viewer(vars=plot_var) #, datamin=0, datamax= A_0)
 plotting_steps  = range(0, step_num, int(step_num/plot_num))
 for step in range(step_num):
     v0.updateOld()
