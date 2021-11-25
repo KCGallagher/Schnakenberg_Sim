@@ -133,6 +133,41 @@ def calculate_movie(tau, X_A, X_B, t, mu, beta, alpha, kappa, d_A, d_B):
     X_B[t+1] = X_B[t] + Z_B_birth + Z_B_react + Z_B_diffusion
 
 
+
+def calculate_picture(tau, X_A, X_B, mu, beta, alpha, kappa, d_A, d_B):
+    """
+    Calculate the number of molecules in each cell of the A and B grids
+    for time t+1.
+    
+    Note that unlike "calculate_movie" we cannot write directly to the array
+    so we need to return it, this means the for loop will look different.
+    """
+    
+    # Birth
+    Z_A_birth = birth(tau, M=X_A, c=mu)
+    Z_B_birth = birth(tau, M=X_B, c=beta)
+
+
+    # Die
+    Z_A_death = die(tau, M=X_A, c=alpha)
+
+
+    # React
+    Z_A_react, Z_B_react = react(tau, X_A, X_B, c=kappa)
+
+
+    # Diffuse
+    Z_A_diffusion = diffuse(tau, M=X_A, d=d_A)
+    Z_B_diffusion = diffuse(tau, M=X_B, d=d_B)
+    
+    
+    # Calculate next grid
+    X_A_next = X_A + Z_A_birth + Z_A_death + Z_A_react + Z_A_diffusion
+    X_B_next = X_B + Z_B_birth + Z_B_react + Z_B_diffusion
+    
+    return X_A_next, X_B_next
+
+
 def initialize_movie(N_t, m, n, A_init, B_init):
     """
     Initializes the 2D grid for a movie with N_t time points,
@@ -151,6 +186,28 @@ def initialize_movie(N_t, m, n, A_init, B_init):
 
     X_B = np.zeros(shape, dtype=np.int16)  # do the same as above for B...
     X_B[0] += B_init
+
+    return X_A, X_B
+
+
+def initialize_picture(m, n, A_init, B_init):
+    """
+    Initializes the 2D grid for a picture with,
+    m rows, and n columns. And with initial A and B set to
+    A_init and B_init.
+    
+    Initializes the parameters with signed 16-bit integer, which
+    can go from -32_768 to 32_767.
+    """    
+    
+    # Initialize the grid of cells for A and B populations
+    shape = (m, n)  # index by row, column
+
+    X_A = np.zeros(shape, dtype=np.int16)  # set A population to zero
+    X_A += A_init  # add initial A population for time zero
+
+    X_B = np.zeros(shape, dtype=np.int16)  # do the same as above for B...
+    X_B += B_init
 
     return X_A, X_B
 
