@@ -70,7 +70,8 @@ This figure displays the formation of a Turing Pattern from a uniform state, wit
 
 
 ```
-import workflow wf
+import workflow as wf
+
 # workflow.py uses sim.py for simulation and vis.py for visualization
 
 sim_1 = wf.Simulation("sim_1")  # initializes with parameters from sim_1.txt
@@ -78,6 +79,33 @@ sim_1.go()  # runs the simulation
 sim_1.visualize()  # creates gifs
 
 ```
+
+
+
+####  Surface plot
+
+![Surface of sim 4 X_A (gif)](Gifs/sim_4-surface-X_A.gif)
+
+#### Image plot
+
+
+
+![Gifs/Imshow of sim 4 X_A (gif)](Gifs/sim_4-imshow-X_A.gif)
+
+
+
+Let's quickly see when the rate of diffusion is 10x lower (for both A and B). There are more spots!
+
+![Imshow of sim 2 X_A (gif)](Gifs/sim_2-imshow-X_A-short.gif)
+
+
+
+#### CT scan visualization
+
+![Sim 4 Catscan X_A](Gifs/sim_4-catscan-X_A.gif)
+
+
+
 
 
 ## References
