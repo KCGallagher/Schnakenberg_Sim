@@ -69,6 +69,15 @@ This figure displays the formation of a Turing Pattern from a uniform state, wit
 ### Stochastic Simulations
 ~ Jesse to add~
 
+
+```
+import workflow wf
+
+sim_1 = wf.Simulation("sim_1")
+sim_1.go()
+```
+
+
 ## References
 
 [1] Schnakenberg, J. (1979). Simple chemical reaction systems with limit cycle behaviour. In Journal of Theoretical Biology (Vol. 81, Issue 3, pp. 389–400). Elsevier BV. https://doi.org/10.1016/0022-5193(79)90042-0
