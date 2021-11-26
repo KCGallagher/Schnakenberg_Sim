@@ -9,6 +9,7 @@ https://ipython-books.github.io/124-simulating-a-partial-differential
 import numpy as np
 import matplotlib.pyplot as plt
 from finite_difference import laplacian, show_patterns
+from gif_creator import create_gif
 
 a = 2.8e-4
 b = 5e-3
@@ -21,12 +22,16 @@ dx = 2. / size  # space step
 T = 9.0  # total time
 dt = .001  # time step
 n = int(T / dt)  # number of iterations
+plot_num = 100
 
 U = np.random.rand(size, size)
 V = np.random.rand(size, size)
 
-fig, axes = plt.subplots(3, 3, figsize=(8, 8))
-step_plot = n // 9
+U = np.ones((size, size)) + 0.01 * np.random.rand(size, size)
+V = np.ones((size, size)) + 0.01 * np.random.rand(size, size)
+
+step_plot = n // plot_num
+plot_count = 0
 # Simulate the PDE with the finite difference method.
 for i in range(n):
     # Compute the Laplacian of u and v.
@@ -47,12 +52,19 @@ for i in range(n):
         Z[:, 0] = Z[:, 1]
         Z[:, -1] = Z[:, -2]
 
-    if i % step_plot == 0 and i < 9 * step_plot:
-        ax = axes.flat[i // step_plot]
-        show_patterns(U, ax=ax)
-        ax.set_title(f'$t={i * dt:.2f}$')
+    if i % step_plot == 0 and i < plot_num * step_plot:
+        plot_count += 1
+        plt.imshow(U, cmap=plt.cm.viridis,
+              interpolation='bilinear',
+              extent=[-1, 1, -1, 1])
+        plt.title(f'$t={i * dt:.2f}$')
+        plt.savefig(f"Images/Spatial_ODE/Turing_Evolution_Const_{plot_count:04d}.png")
+        #plt.show()
+        
+create_gif("Images/Spatial_ODE/Turing_Evolution_Const")
 
-plt.savefig("Images/Spatial_ODE/Turing_Evolution.png")
 fig, ax = plt.subplots(1, 1, figsize=(8, 8))
 show_patterns(U, ax=ax)
-plt.savefig("Images/Spatial_ODE/Turing_Final_State.png")
+plt.savefig("Images/Turing_Final_State.png")
+
+
