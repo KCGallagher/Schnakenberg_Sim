@@ -49,15 +49,16 @@ Diffusive terms can be added into the stochastic model by partitioning the domai
 <img src="https://render.githubusercontent.com/render/math?math=A_{(i,j)} \quad \xrightarrow{d} \quad A_{(i \pm 1,j\pm 1)} , \quad d := D/h^2">
 
 
-
-
 ## Code Structure
 
-Running files have _'main'_ in the file name (such as `ode_main.py`), and can be used to run simulations of the system, based on functions defined in the other files. The functionality of each of these files is as follows:
+Running files have _'main'_ in the file name (such as `ode_main.py`), and can be used to run simulations and generate visualisations of the system, based on functions defined in the other files. The functionality of each of these files is as follows:
 
-* `ode_main.py` - Solve time-dependant ODE model with no spatial dependance
+* `ode_main.py` - Solve ODE model with no spatial dependance  
+* `spatial_main.py` - Solve ODE model with spatial dependance in 1D  
+* `spatial_main_2d.py` - Solve ODE model with spatial dependance in 2D  
+* `fd_main.py` - Solve ODE model with spatial dependance in 2D, using finite difference method  
 
-Further scripts are provided as Jupyter Notebooks (`.ipynb`) in the `Examples/` directory, and used to generate all figures in the `Images/` directory.
+Further scripts are provided as Jupyter Notebooks (`.ipynb`) in the `Examples/` directory, and used to generate all other figures in the `Images/` directory.
 
 ## Example Results
 ### Deterministic PDE Simulations
