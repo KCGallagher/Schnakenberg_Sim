@@ -84,13 +84,29 @@ sim_1.visualize()  # creates gifs
 
 ####  Surface plot
 
-![Surface of sim 4 X_A (gif)](Gifs/sim_4-surface-X_A.gif)
-
-#### Image plot
 
 
+Surface Plot of A             |  Image Plot of A
+:-------------------------:|:-------------------------:
+![](Gifs/sim_4-surface-X_A.gif) | ![](Gifs/sim_4-imshow-X_A.gif)
 
-![Gifs/Imshow of sim 4 X_A (gif)](Gifs/sim_4-imshow-X_A.gif)
+
+
+
+#### Compare final A and B populations
+
+
+Population A             |  Population B
+:-------------------------:|:-------------------------:
+![](Images/last-A.png) | ![](Images/last-B.png)
+
+
+
+
+
+
+
+
 
 
 
