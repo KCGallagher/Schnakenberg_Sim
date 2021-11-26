@@ -59,6 +59,15 @@ Running files have _'main'_ in the file name (such as `ode_main.py`), and can be
 
 Further scripts are provided as Jupyter Notebooks (`.ipynb`) in the `Examples/` directory, and used to generate all figures in the `Images/` directory.
 
+## Example Results
+### Deterministic PDE Simulations
+![Deterministic Turing Pattern Formation (gif)](Images/Spatial_ODE/Turing_Evolution_Const2.gif)  
+
+This figure displays the formation of a Turing Pattern from a uniform state, with an additional uniform noise distribution. The simulation is nondimensionalised, and so both time and position are in arbitrary units scaled by the rate and diffusion constants.
+
+### Stochastic Simulations
+~ Jesse to add~
+
 ## References
 
 [1] Schnakenberg, J. (1979). Simple chemical reaction systems with limit cycle behaviour. In Journal of Theoretical Biology (Vol. 81, Issue 3, pp. 389–400). Elsevier BV. https://doi.org/10.1016/0022-5193(79)90042-0
