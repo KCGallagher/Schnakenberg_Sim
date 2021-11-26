@@ -67,14 +67,16 @@ Further scripts are provided as Jupyter Notebooks (`.ipynb`) in the `Examples/` 
 This figure displays the formation of a Turing Pattern from a uniform state, with an additional uniform noise distribution. The simulation is nondimensionalised, and so both time and position are in arbitrary units scaled by the rate and diffusion constants.
 
 ### Stochastic Simulations
-~ Jesse to add~
 
 
 ```
 import workflow wf
+# workflow.py uses sim.py for simulation and vis.py for visualization
 
-sim_1 = wf.Simulation("sim_1")
-sim_1.go()
+sim_1 = wf.Simulation("sim_1")  # initializes with parameters from sim_1.txt
+sim_1.go()  # runs the simulation
+sim_1.visualize()  # creates gifs
+
 ```
 
 
