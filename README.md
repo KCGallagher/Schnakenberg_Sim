@@ -28,9 +28,9 @@ This can be represented by the non-dimensional system of ODEs:
 | Parameter     | Description                                   | Corresponding Stochastic Parameter|
 | ------------- | --------------------------------------------- |-----------------------------------|
 | μ             | Birth rate of A molcules | k_2 |    
-| β             | Birth rate of B molecules   | 1/t  |
+| β             | Birth rate of B molecules   | k_4  |
 | κ             | Rate of _2A + B → 3A_  reaction     | k_1 |
-| α             | Death rate of A molcules    | 1/t  |
+| α             | Death rate of A molcules    | k_3  |
 
 β > 0 controls the rate of tranmission, κ > 0 the rate at which exposed individuals become infectious, and γ > 0 the rate at which individuals recover. The model also requires initial conditions for each compartment: S(0), E(0), I(0), and R(0), which represent the initial number of people in each category.
 
