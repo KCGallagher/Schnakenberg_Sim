@@ -4,10 +4,10 @@ Plots one concentration variable at subsequent timepoints and then converts
 these into a .gif, optionally deleting the image files afterwards
 """
 
-from fipy import Grid2D, CellVariable, TransientTerm, DiffusionTerm, Viewer
+from fipy import Grid2D, CellVariable, TransientTerm, DiffusionTerm, Viewer, GaussianNoiseVariable
 from gif_creator import create_gif
 
-h = 1
+h = 25e-3
 
 D_A, D_B = 1e-5/(2*h**2), 1e-3/(2*h**2)
 alpha = 0.02
@@ -19,13 +19,22 @@ A_0, B_0 = 200.0, 75.0  # Should be defined as floats
 nx = 100
 dx = 1.1
 m = Grid2D(dx=dx, dy=dx, nx=nx, ny=nx)
+volumes = CellVariable(mesh=m, value=m.cellVolumes)
 
 time_step = 0.2
 step_num, plot_num = 100, 20  # Plot num should be less than step num
-delete_images = True  # Boolean to delete images after running
 
-v0 = CellVariable(name = "Concentration of A", mesh=m, hasOld=True, value=A_0)
-v1 = CellVariable(name = "Concentration of B", mesh=m, hasOld=True, value=B_0)
+delete_images = True  # Boolean to delete images after running
+random_initial_state = True  # Boolean to determine whether initial state has gaussian noise
+
+if random_initial_state:
+    v0 = GaussianNoiseVariable(name = "Concentration of A", mesh=m, hasOld=True,
+                               mean=A_0,variance=A_0 / volumes)
+    v1 = GaussianNoiseVariable(name = "Concentration of B", mesh=m, hasOld=True,
+                               mean=B_0,variance=B_0 / volumes)
+else:
+    v0 = CellVariable(name = "Concentration of A", mesh=m, hasOld=True, value=A_0)
+    v1 = CellVariable(name = "Concentration of B", mesh=m, hasOld=True, value=B_0)
 plot_var = v0  # CHANGE THIS TO V0 OR V1 TO DETERMINE WHICH VARIABLE IS PLOTTED
 
 eqn0 = TransientTerm(var=v0) == mu - alpha * v0 + kappa * v0**2 * v1 + DiffusionTerm(D_A, var=v0) 
