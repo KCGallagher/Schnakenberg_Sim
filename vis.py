@@ -54,7 +54,7 @@ def movie2png(X, filename, kind="X_A", every=5_000, max_value=1000, movie_type="
             plot_imshow(M, picturename, vmin=0, vmax=max_value, save=True, dpi=350)
             
         if movie_type == "surface":
-            plot_surface(M, filename, suffix, zmin=0, zmax=max_value, save=True, dpi=350)
+            plot_surface(M, picturename, zmin=0, zmax=max_value, save=True, dpi=350)
             
     return picture_names
             
@@ -123,13 +123,13 @@ def make_gif(picture_names, filename, kind, gif_type):
 
 
 
-def create_all_gifs(X, filename, kind, every=2_000, window=4, max_value=1000):
+def create_all_gifs(X, filename, kind, every=2_000, window=4, max_value=1000, N_max=None):
     # imshow
-    imshow_names = movie2png(X, filename, kind, every=every, max_value=max_value, movie_type='imshow')
+    imshow_names = movie2png(X, filename, kind, every=every, max_value=max_value, movie_type='imshow', N_max=N_max)
     make_gif(imshow_names, filename, kind, 'imshow')
     
     # surface
-    surface_names = movie2png(X, filename, kind, every=every, max_value=max_value, movie_type='surface')
+    surface_names = movie2png(X, filename, kind, every=every, max_value=max_value, movie_type='surface', N_max=N_max)
     make_gif(surface_names, filename, kind, 'surface')
     
     # catscan

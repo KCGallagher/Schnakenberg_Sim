@@ -93,7 +93,7 @@ class Simulation:
         print(self.runtime)
 
 
-    def visualize(self, every=2_000, window=4, max_value=1_000):
-        vis.create_all_gifs(self.X_A, self.filename, kind="X_A", every=every, window=window, max_value=max_value)
-        vis.create_all_gifs(self.X_B, self.filename, kind="X_B", every=every, window=window, max_value=max_value)
+    def visualize(self, every=2_000, window_A=4, max_value_A=1_000, window_B=2, max_value_B=500):
+        vis.create_all_gifs(self.X_A, self.filename, kind="X_A", every=every, window=window_A, max_value=max_value_A)
+        vis.create_all_gifs(self.X_B, self.filename, kind="X_B", every=every, window=window_B, max_value=max_value_B)
 
