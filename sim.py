@@ -73,7 +73,7 @@ def diffuse(tau, M, d):
     Ds = np.random.poisson(lam=tau*P, size=(4,) + M.shape)
     
     # Zero matrix (for calculating difference vector)
-    Z = np.zeros(shape=M.shape)
+    Z = np.zeros(shape=M.shape, dtype=np.int16)
     
     ### 1. Take from top of matrix and give to bottom of matrix 
     # Make D equal to all of first of Ds except bottom row
@@ -104,68 +104,8 @@ def diffuse(tau, M, d):
     return Z
 
 
-def calculate_movie(tau, X_A, X_B, t, mu, beta, alpha, kappa, d_A, d_B):
-    """
-    Calculate the number of molecules in each cell of the A and B grids
-    for time t+1.
-    """
-    
-    # Birth
-    Z_A_birth = birth(tau, M=X_A[t], c=mu)
-    Z_B_birth = birth(tau, M=X_B[t], c=beta)
 
-
-    # Die
-    Z_A_death = die(tau, M=X_A[t], c=alpha)
-
-
-    # React
-    Z_A_react, Z_B_react = react(tau, X_A[t], X_B[t], c=kappa)
-
-
-    # Diffuse
-    Z_A_diffusion = diffuse(tau, M=X_A[t], d=d_A)
-    Z_B_diffusion = diffuse(tau, M=X_B[t], d=d_B)
-    
-    
-    # Calculate next grid
-    X_A[t+1] = X_A[t] + Z_A_birth + Z_A_death + Z_A_react + Z_A_diffusion
-    X_B[t+1] = X_B[t] + Z_B_birth + Z_B_react + Z_B_diffusion
-
-
-
-def calculate_picture(tau, X_A, X_B, mu, beta, alpha, kappa, d_A, d_B):
-    """
-    Calculate the number of molecules in each cell of the A and B grids
-    for time t+1.
-    
-    Note that unlike "calculate_movie" we cannot write directly to the array
-    so we need to return it, this means the for loop will look different.
-    """
-    
-    # Birth
-    Z_A_birth = birth(tau, M=X_A, c=mu)
-    Z_B_birth = birth(tau, M=X_B, c=beta)
-
-
-    # Die
-    Z_A_death = die(tau, M=X_A, c=alpha)
-
-
-    # React
-    Z_A_react, Z_B_react = react(tau, X_A, X_B, c=kappa)
-
-
-    # Diffuse
-    Z_A_diffusion = diffuse(tau, M=X_A, d=d_A)
-    Z_B_diffusion = diffuse(tau, M=X_B, d=d_B)
-    
-    
-    # Calculate next grid
-    X_A_next = X_A + Z_A_birth + Z_A_death + Z_A_react + Z_A_diffusion
-    X_B_next = X_B + Z_B_birth + Z_B_react + Z_B_diffusion
-    
-    return X_A_next, X_B_next
+# Initialization
 
 
 def initialize_movie(N_t, m, n, A_init, B_init):
@@ -189,6 +129,44 @@ def initialize_movie(N_t, m, n, A_init, B_init):
 
     return X_A, X_B
 
+
+# Calculation
+
+def calculate_picture(tau, M_A, M_B, mu, beta, alpha, kappa, d_A, d_B):
+    """
+    Calculate the number of molecules in each cell of the A and B grids
+    for time t+1.
+    
+    Note that unlike "calculate_movie" we cannot write directly to the array
+    so we need to return it, this means the for loop will look different.
+    """
+    
+    # Birth
+    Z_A_birth = birth(tau, M=M_A, c=mu)
+    Z_B_birth = birth(tau, M=M_B, c=beta)
+
+
+    # Die
+    Z_A_death = die(tau, M=M_A, c=alpha)
+
+
+    # React
+    Z_A_react, Z_B_react = react(tau, M_A, M_B, c=kappa)
+
+
+    # Diffuse
+    Z_A_diffusion = diffuse(tau, M=M_A, d=d_A)
+    Z_B_diffusion = diffuse(tau, M=M_B, d=d_B)
+    
+    
+    # Calculate next grid
+    M_A_next = M_A + Z_A_birth + Z_A_death + Z_A_react + Z_A_diffusion
+    M_B_next = M_B + Z_B_birth + Z_B_react + Z_B_diffusion
+    
+    return M_A_next, M_B_next
+
+
+# Miscillaneous initialization if we don't care about the movie and only the final timepoint
 
 def initialize_picture(m, n, A_init, B_init):
     """
