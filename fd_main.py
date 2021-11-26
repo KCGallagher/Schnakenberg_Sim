@@ -19,16 +19,16 @@ k = -.005
 size = 100  # size of the 2D grid
 dx = 2. / size  # space step
 
-T = 9.0  # total time
+T = 10.0  # total time
 dt = .001  # time step
 n = int(T / dt)  # number of iterations
-plot_num = 100
+plot_num = 10
 
 U = np.random.rand(size, size)
 V = np.random.rand(size, size)
 
-U = np.ones((size, size)) + 0.01 * np.random.rand(size, size)
-V = np.ones((size, size)) + 0.01 * np.random.rand(size, size)
+# U = np.ones((size, size)) + 0.01 * np.random.rand(size, size)
+# V = np.ones((size, size)) + 0.01 * np.random.rand(size, size)
 
 step_plot = n // plot_num
 plot_count = 0
@@ -58,13 +58,15 @@ for i in range(n):
               interpolation='bilinear',
               extent=[-1, 1, -1, 1])
         plt.title(f'$t={i * dt:.2f}$')
-        plt.savefig(f"Images/Spatial_ODE/Turing_Evolution_Const_{plot_count:04d}.png")
+        plt.savefig(f"Images/Spatial_ODE/Turing_Evolution_Const2_{plot_count:04d}.png")
         #plt.show()
         
-create_gif("Images/Spatial_ODE/Turing_Evolution_Const")
+#create_gif("Images/Spatial_ODE/Turing_Evolution_Const2")
 
 fig, ax = plt.subplots(1, 1, figsize=(8, 8))
 show_patterns(U, ax=ax)
-plt.savefig("Images/Turing_Final_State.png")
+plt.title(f'$t={i * dt:.2f}$')
+#plt.savefig("Images/Turing_Final_State.png")
+#plt.show()
 
 

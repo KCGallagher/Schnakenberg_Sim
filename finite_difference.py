@@ -29,7 +29,7 @@ def show_patterns(U, ax=None):
     
     Params:
     U [Array] - Array of spatial data to plot"""
-    ax.imshow(U, cmap=plt.cm.copper,
+    ax.imshow(U, cmap=plt.cm.viridis,
               interpolation='bilinear',
               extent=[-1, 1, -1, 1])
     ax.set_axis_off()
