@@ -80,19 +80,6 @@ sim_1.visualize()  # creates gifs
 
 ```
 
-
-
-####  Surface plot
-
-
-
-Surface Plot of A             |  Image Plot of A
-:-------------------------:|:-------------------------:
-![](Gifs/sim_4-surface-X_A.gif) | ![](Gifs/sim_4-imshow-X_A.gif)
-
-
-
-
 #### Compare final A and B populations
 
 
@@ -108,11 +95,6 @@ Population A             |  Population B
 
 
 
-
-
-Let's quickly see when the rate of diffusion is 10x lower (for both A and B). There are more spots!
-
-![Imshow of sim 2 X_A (gif)](Gifs/sim_2-imshow-X_A-short.gif)
 
 
 
